@@ -30,9 +30,11 @@ nav {
   display:flex;
   background:white;
   border-bottom:1px solid var(--border);
+  overflow-x:auto;
 }
 nav button {
   flex:1;
+  min-width:105px;
   padding:18px 5px;
   border:0;
   border-bottom:2px solid transparent;
@@ -127,12 +129,30 @@ th {background:#f2f6fa}
   display:block;
 }
 a {color:#16734d;overflow-wrap:anywhere}
+.pdf-frame {
+  width:100%;
+  height:80vh;
+  min-height:550px;
+  border:1px solid var(--border);
+  border-radius:6px;
+}
+.pdf-link {
+  display:inline-block;
+  background:var(--green);
+  color:white;
+  padding:12px 18px;
+  border-radius:7px;
+  text-decoration:none;
+  font-weight:bold;
+  margin:10px 0 18px;
+}
 @media(max-width:600px) {
   header h1 {font-size:19px}
   nav button {font-size:12px;padding:14px 3px}
   .personnel {grid-template-columns:1fr}
   .kv {font-size:12px}
   main {padding:10px}
+  .pdf-frame {height:65vh;min-height:450px}
 }
 </style>
 </head>
@@ -141,8 +161,10 @@ a {color:#16734d;overflow-wrap:anywhere}
 <header>
   <h1>🏗️ SABİT-35T HI-UP — Bakım Paneli</h1>
   <p>HI-UP • H-HIDROKON 105TM L6-L5</p>
-  <p>Plaka: <b>27ALC352</b> |
-  Seri/Şasi: <b>NM0MKXTP6MME94460</b></p>
+  <p>
+    Plaka: <b>27ALC352</b> |
+    Seri/Şasi: <b>NM0MKXTP6MME94460</b>
+  </p>
 </header>
 
 <nav>
@@ -150,9 +172,11 @@ a {color:#16734d;overflow-wrap:anywhere}
   <button onclick="tab('filtre',this)">🔧 Filtreler</button>
   <button onclick="tab('qr',this)">▦ QR</button>
   <button onclick="tab('arac',this)">🏗️ Araç</button>
+  <button onclick="tab('kontrol',this)">📄 Periyodik Kontrol Raporu</button>
 </nav>
 
 <main>
+
 <section class="panel active" id="bakim">
   <div class="card">
     <h2>🗓️ Son Periyodik Bakım
@@ -205,19 +229,51 @@ a {color:#16734d;overflow-wrap:anywhere}
           </tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>MA07030300231</td><td>MAZOT FİLTRE FORD MEGC469176AC</td></tr>
-          <tr><td>1</td><td>MA07030300024</td><td>ŞASE FİLTRESİ A9604770003 504046809 GC469176BA 125005</td></tr>
-          <tr><td>1</td><td>MA07030200181</td><td>YAĞ FİLTRESİ FORD 2C466744AA MAN W11709</td></tr>
-          <tr><td>1</td><td>MA07030200077</td><td>YAĞ FİLTRESİ MANN W11605 FORD 2C466C769AA</td></tr>
-          <tr><td>1</td><td>MA07030100144</td><td>HAVA FİLTRESİ İÇ DIŞ SET MEGC469601A1A</td></tr>
-          <tr><td>1</td><td>MA07030100214</td><td>SOĞUTMA SIVISI FİLTRESİ FORD GC468A469AA</td></tr>
-          <tr><td>1</td><td>MA07030100402</td><td>TOR HAVALANDIRMA EMİSYON FİLTRESİ GC469D697AA KTC466A603AB KTC466A603BB</td></tr>
-          <tr><td>1</td><td>MA07030600044</td><td>HAVA KURUTUCU FİLTRE</td></tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030300231</td>
+            <td>MAZOT FİLTRE FORD MEGC469176AC</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030300024</td>
+            <td>ŞASE FİLTRESİ A9604770003 504046809 GC469176BA 125005</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030200181</td>
+            <td>YAĞ FİLTRESİ FORD 2C466744AA MAN W11709</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030200077</td>
+            <td>YAĞ FİLTRESİ MANN W11605 FORD 2C466C769AA</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030100144</td>
+            <td>HAVA FİLTRESİ İÇ DIŞ SET MEGC469601A1A</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030100214</td>
+            <td>SOĞUTMA SIVISI FİLTRESİ FORD GC468A469AA</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030100402</td>
+            <td>TOR HAVALANDIRMA EMİSYON FİLTRESİ GC469D697AA KTC466A603AB KTC466A603BB</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>MA07030600044</td>
+            <td>HAVA KURUTUCU FİLTRE</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <p>Toplam 8 kalem / 8 adet.</p>
-    <p>Malzeme kodları sipariş öncesinde kontrol edilmelidir.</p>
+    <p>Malzeme kodlarını sipariş öncesinde kontrol edin.</p>
   </div>
 </section>
 
@@ -243,6 +299,49 @@ a {color:#16734d;overflow-wrap:anywhere}
     <div class="kv"><span>SONRAKİ BAKIM</span><span>6052 h</span></div>
   </div>
 </section>
+
+<section class="panel" id="kontrol">
+  <div class="card">
+    <h2>📄 Periyodik Kontrol Raporu — Orijinal PDF</h2>
+
+    <div class="kv">
+      <span>RAPOR NUMARASI</span>
+      <span>2026-0916.0007</span>
+    </div>
+    <div class="kv">
+      <span>KONTROL TARİHİ</span>
+      <span>12.09.2026</span>
+    </div>
+    <div class="kv">
+      <span>SONRAKİ KONTROL TARİHİ</span>
+      <span>12.12.2026</span>
+    </div>
+    <div class="kv">
+      <span>SONUÇ</span>
+      <span>Mevcut şartlar altında kullanılması uygundur</span>
+    </div>
+
+    <p>
+      Rapor aşağıda orijinal PDF biçiminde gösterilir.
+      Telefonunuz PDF'yi sayfa içinde açmıyorsa
+      aşağıdaki bağlantıyı kullanın.
+    </p>
+
+    <a class="pdf-link"
+       href="sabit35t_periyodik_kontrol_2026.pdf"
+       target="_blank"
+       rel="noopener">
+      📄 Orijinal PDF'yi Aç
+    </a>
+
+    <iframe
+      class="pdf-frame"
+      src="sabit35t_periyodik_kontrol_2026.pdf#toolbar=1"
+      title="Orijinal periyodik kontrol raporu">
+    </iframe>
+  </div>
+</section>
+
 </main>
 
 <script>
@@ -251,6 +350,7 @@ function tab(id,button) {
     p.classList.remove('active');
   });
   document.getElementById(id).classList.add('active');
+
   document.querySelectorAll('nav button').forEach(function(b) {
     b.classList.remove('active');
   });
@@ -261,6 +361,7 @@ const panelUrl =
   'https://humakubraogut-art.github.io/SAC2500E-Bakim-Paneli/sabit35t_hiup_bakim_paneli.html';
 
 document.getElementById('panelLink').href = panelUrl;
+
 document.getElementById('qrImage').src =
   'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
   + encodeURIComponent(panelUrl);
